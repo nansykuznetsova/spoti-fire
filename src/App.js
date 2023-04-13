@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import * as React from 'react';
+import { ChakraProvider, SimpleGrid } from '@chakra-ui/react';
+import { NavBar } from './components/NavBar';
+import { SearchBar } from './components/SearchBar';
+import { SearchResults } from './components/SearchResults';
+import { Playlist } from './components/Playlist';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ChakraProvider>
+      <div>
+        <NavBar />
+        <SearchBar />
+        <SimpleGrid columns={2} 
+          spacingX='40px' 
+          spacingY='20px' 
+          padding='0 3rem'
+          gridTemplateColumns='repeat(auto-fit, minmax(18rem, 1fr))'>
+          <SearchResults />
+          <Playlist />
+        </SimpleGrid>
+      </div>
+    </ChakraProvider>
+  )
 }
 
 export default App;
