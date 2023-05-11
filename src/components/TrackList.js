@@ -1,10 +1,26 @@
 import React from "react";
 import { Track } from "./Track";
 
-export const TrackList = () => {
+import { ListItem, List } from "@chakra-ui/react";
+
+export const TrackList = (props) => {
+  const { list, character} = props;
+
   return (
     <React.Fragment>
-      <Track />
+      <List>
+        {list.map((item) => (
+          <ListItem key={item.id}>
+            <Track
+              item={item}
+              title={item.name}
+              artists={item.artists}
+              album={item.album.album_group}
+              trackActionCharacter={character}
+            />
+          </ListItem>
+        ))}
+      </List>
     </React.Fragment>
   );
 };
