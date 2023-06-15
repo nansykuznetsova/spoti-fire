@@ -15,7 +15,7 @@ export const TrackList = (props) => {
               item={item}
               title={item.name}
               artists={item.artists}
-              album={item.album.album_group}
+              album={item.album.name}
               trackActionCharacter={character}
             />
           </ListItem>
