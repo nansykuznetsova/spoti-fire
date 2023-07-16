@@ -1,26 +1,41 @@
 import React from "react";
-import { Track } from "./Track";
-
-import { ListItem, List } from "@chakra-ui/react";
+import { List, ListItem } from "spoty-fire-ui";
+import {addTrack, deleteTrack} from "../features/playlists/playlistSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {selectNewPlaylist} from "../features/playlists/playlistSelector";
 
 export const TrackList = (props) => {
-  const { list, character} = props;
-
+  const { list, actionLabel } = props;
+  const dispatch = useDispatch();
+  const newPlaylist = useSelector(selectNewPlaylist);
+  
+  const handleAddTrack = (item) => {
+    if (!newPlaylist.some((track) => track.id === item.id)) {
+      dispatch(addTrack(item));
+    }
+  };
+  
+  const handleDeleteTrack = (item) => {
+    dispatch(deleteTrack(item.id));
+  };
+  
   return (
-    <React.Fragment>
-      <List>
-        {list.map((item) => (
-          <ListItem key={item.id}>
-            <Track
-              item={item}
-              title={item.name}
-              artists={item.artists}
-              album={item.album.name}
-              trackActionCharacter={character}
-            />
-          </ListItem>
-        ))}
-      </List>
-    </React.Fragment>
+    <List>
+      {list.map((item) => (
+        <ListItem
+          item={item}
+          key={item.id}
+          title={item.name}
+          artists={item.artists}
+          album={item.album.name}
+          img={item.album.images[0]}
+          actionLabel={actionLabel}
+          onClick={
+            actionLabel === 'Add' ? handleAddTrack : handleDeleteTrack}
+        >
+          {item.label}
+        </ListItem>
+      ))}
+    </List>
   );
 };

@@ -1,0 +1,26 @@
+.searchContainer {
+    width: auto;
+    padding: 3rem 10rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.selectContainer {
+    width: 20%;
+}
+
+.fieldContainer {
+    width: 100%;
+}
+
+@media only screen and (max-width: 1100px) {
+    .searchContainer {
+        padding: 2rem 5rem;
+        display: block;
+    }
+    .selectContainer {
+        margin: 0 auto;
+        padding-bottom: 1rem;
+    }
+}
